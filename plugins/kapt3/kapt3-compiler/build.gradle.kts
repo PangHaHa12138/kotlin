@@ -4,6 +4,9 @@ description = "Annotation Processor for Kotlin"
 apply { plugin("kotlin") }
 
 dependencies {
+    testCompile(intellijCoreDep()) { includeJars("intellij-core") }
+    testCompile(intellijDep()) { includeJars("idea", "idea_rt", "openapi") }
+
     compile(project(":compiler:util"))
     compile(project(":compiler:cli"))
     compile(project(":compiler:backend"))
@@ -17,8 +20,6 @@ dependencies {
     testCompile(project(":compiler:tests-common"))
     testCompile(projectTests(":compiler:tests-common"))
     testCompile(commonDep("junit:junit"))
-    testCompile(intellijCoreDep()) { includeJars("intellij-core") }
-    testCompile(intellijDep()) { includeJars("idea", "idea_rt", "openapi") }
     testCompile(project(":kotlin-annotation-processing-runtime"))
 }
 

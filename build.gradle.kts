@@ -252,21 +252,6 @@ apply {
     }
 }
 
-val importedAntTasksPrefix = "imported-ant-update-"
-
-// TODO: check the reasons of import conflict with xerces
-//ant.importBuild("$rootDir/update_dependencies.xml") { antTaskName -> importedAntTasksPrefix + antTaskName }
-
-tasks.matching { task ->
-    task.name.startsWith(importedAntTasksPrefix)
-}.forEach {
-    it.group = "Imported ant"
-}
-
-//task("update-dependencies") {
-//    dependsOn(tasks.getByName(importedAntTasksPrefix + "update"))
-//}
-
 fun Project.allprojectsRecursive(body: Project.() -> Unit) {
     this.body()
     this.subprojects { allprojectsRecursive(body) }
